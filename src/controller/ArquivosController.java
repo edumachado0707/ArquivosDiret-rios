@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Desktop;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -97,9 +98,15 @@ public class ArquivosController implements IArquivosController{
 }
 	@Override
 	public void openfile(String path, String nome) throws IOException {
-		// TODO Auto-generated method stub
+		File arq = new File (path,nome);
+		if (arq.exists() && arq.isFile()) {
+			Desktop desktop = Desktop.getDesktop();		
+			desktop.open(arq);
+	  }else {
+		  throw new IOException("Arquivo Inválido");
+	  }
 		
-	}
+	  }
 	
 
 }
